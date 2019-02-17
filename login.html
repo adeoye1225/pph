@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <title>Pediatric Partners Mobile</title>
+    <meta name="author" content="Adeoye Akano" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!--*
+        *   Splash Screen Images
+        **-->
+    <!-- Allow web app to be run in full-screen mode. -->
+    <meta name="apple-mobile-web-app-capable"
+          content="yes">
+
+    <!-- Configure the status bar. -->
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black">
+
+    <!-- iPad retina portrait startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-1536x2008.png"
+          media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 2)
+                 and (orientation: portrait)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPad retina landscape startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-1496x2048.png"
+          media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 2)
+                 and (orientation: landscape)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPad non-retina portrait startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-768x1004.png"
+          media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 1)
+                 and (orientation: portrait)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPad non-retina landscape startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-748x1024.png"
+          media="(device-width: 768px) and (device-height: 1024px)
+                 and (-webkit-device-pixel-ratio: 1)
+                 and (orientation: landscape)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone 6 Plus portrait startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-1242x2148.png"
+          media="(device-width: 414px) and (device-height: 736px)
+                 and (-webkit-device-pixel-ratio: 3)
+                 and (orientation: portrait)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone 6 Plus landscape startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-1182x2208.png"
+          media="(device-width: 414px) and (device-height: 736px)
+                 and (-webkit-device-pixel-ratio: 3)
+                 and (orientation: landscape)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone 6 startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-750x1294.png"
+          media="(device-width: 375px) and (device-height: 667px)
+                 and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone 5 startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-640x1096.png"
+          media="(device-width: 320px) and (device-height: 568px)
+                 and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone < 5 retina startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-640x920.png"
+          media="(device-width: 320px) and (device-height: 480px)
+                 and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image">
+
+    <!-- iPhone < 5 non-retina startup image -->
+    <link href="photos/splashScreens/apple-touch-startup-image-320x460.png"
+          media="(device-width: 320px) and (device-height: 480px)
+                 and (-webkit-device-pixel-ratio: 1)"
+          rel="apple-touch-startup-image">
+
+    <!--*
+        *   FavIcons
+        **-->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="img/favicons/manifest.json">
+    <link rel="shortcut icon" href="img/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="img/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+
+	<link rel="stylesheet" href="css/framework7_and_colors.min.css">
+    <link rel="stylesheet" href="css/essentials.css">
+    <link rel="stylesheet" href="css/my-app.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	 
+</head>
+<body class="primary-bg">
+<!-- Views-->
+<div class="views">
+    <!-- Your main view, should have "view-main" class-->
+    <div class="view view-main">
+       <!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<div class="pages navbar-fixed">
+    <!-- Page, data-page contains page name-->
+    <div data-page="login" class="page bg-2">
+      
+        <!-- Scrollable page content-->
+        <div class="page-content vh-center">
+            <div class="content-block">
+				<div class="text-center">
+				<img src="img/logo@2x.png" class="login-pic"/>
+				</div>
+                <form method="get" action="?" class="list-block">
+					
+                    <div class="item-content">
+                        <div class="item-media"><img src="img/icon/login/email.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-input item-input-field">
+                                <input type="email" placeholder="E-Mail" class="letter-spacing1px" id="username">
+                            </div>
+                        </div>
+						 <div class="item-media"></div>
+                    </div>
+                    <div class="item-content">
+                        <div class="item-media"><img src="img/icon/login/password.png"/></div>
+                        <div class="item-inner">
+                            <div class="item-input item-input-field">
+                                <input type="password" placeholder="Password" id="pwd">
+                            </div>
+                        </div>
+						 <div class="item-media"><a onclick="show()" href="#"><img src="img/icon/login/eye.png" id="EYE"></a></div>
+                    </div>
+                    <p class="buttons-row"><a class="button text-right" href="forgot-password.html"><small class="letter-spacing1px">FORGOT PASSWORD</small></a></p>
+                    <p>By Logging in, you agree to Intuitive Global healthcare <a href="#" class="underline-login-link">Privacy Policy</a> and <a href="#" class="underline-login-link">Terms of Use</a></p>
+					<p class="buttons-row"><button id="btn-sign-in" class="button button-raised button-fill color-btn-blue height-with-pad letter-spacing1px">Login &nbsp;<i class="fas fa-chevron-right float-right"></i></button></p>
+					<p class="buttons-row"><b class="login-account letter-spacing1px">DON'T HAVE AN ACCOUNT?</b><a class="button text-right color-white" href="register.html">REGISTER NOW</a></p>
+                </form>
+
+
+
+                
+            </div><!-- .content-block | ENDS -->
+        </div><!-- .page-content | ENDS -->
+    </div>
+</div>
+    </div><!-- .view | ENDS -->
+</div><!-- .views | ENDS -->
+
+<!-- Loading Screen -->
+<div class="tc-loading-screen vh-center">
+    <div>
+        <div class="big">Page is Loading</div>
+        <div class="small">Please Wait...</div>
+
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div><!-- .tc-loading-screen | ENDS -->
+
+<!-- Status bar overlay for fullscreen mode-->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Left panel with reveal effect-->
+
+
+<script src="js/lib/jquery-1.11.3.min.js"></script>
+<script data-main="js/app" src="js/require.min.js"></script>
+	
+	<script  src="js/custom.js"></script>
+<script>
+	function show() {
+        var a=document.getElementById("pwd");
+        var b=document.getElementById("EYE");
+        if (a.type=="password")  {
+        a.type="text";
+        b.src="img/icon/login/uneye.png";
+        }
+        else {
+        a.type="password";
+        b.src="img/icon/login/eye.png";
+        }
+    }
+
+
+
+	</script>
+</body>
+</html>
