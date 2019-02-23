@@ -3131,6 +3131,20 @@ position: absolute !important;
 
 .btn-cancel-appoint{
     padding: 10px !important;
+    margin: 5px 0px;
+    background: transparent !important;
+    border: 1px solid #FF0000 !important;
+    color: #FF0000 !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+    width: 100% !important;
+}
+
+
+.btn-confirm-appoint{
+    padding: 10px !important;
+    margin: 5px 0px;
     background: transparent !important;
     border: 1px solid #2989DB !important;
     color: #2989DB !important;
