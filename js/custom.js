@@ -230,7 +230,7 @@ $(document).ready(function() {
         //return false;
     //})
 
-    $(document).on('click','#btn-slider-login',function (){
+    $(document).on('click','.btn-slider-login',function (){
         window.location.replace('login.html');
         return false;
     });
