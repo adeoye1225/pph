@@ -2,10 +2,7 @@ var company_code = "1172700";
 $(document).ready(function() {
 
 
-    // $(document).on('click', '#btn-link-login', function () {
-    //     window.location.replace('inner.html');
-    //     return false;
-    // })
+    
 
     $(document).on('click', '#btn-sign-in', function () {
         //alert("click");
@@ -56,10 +53,10 @@ $(document).ready(function() {
                 }
 
             });
-
+            return false;
         }
-        return false;
-    })
+
+    });
 
     $(document).on('click', '#btn-register', function () {
 
@@ -129,7 +126,7 @@ $(document).ready(function() {
             });
             return false;
         }
-    })
+    });
 
 
 
@@ -153,24 +150,30 @@ $(document).ready(function() {
                 if(msg.status == 1) {
 
                    window.location.replace('login.html');
+				   
                 } else if(msg.status == 101){
 
                     alert(msg.message);
                     window.location.replace('login.html');
+					
                 } else {
 
                     alert(msg.message);
                     window.location.replace('login.html');
+					
                 }
 
             },
             error: function(msg){
                 alert("Error connecting");
                 window.location.replace('login.html');
+				
 
             }
+
         });
-    })
+		return false;
+    });
 	
 	    $(document).on('click', '#btn-forgot-password', function () {
         //alert("click");
@@ -214,12 +217,12 @@ $(document).ready(function() {
 
         }
         return false;
-    })
+    });
 
     $(document).on('click', '#home-link', function () {
         window.location.replace('inner.html');
         return false;
-    })
+    });
 
     //$(document).on('click', '.link-logout', function () {
 
@@ -230,7 +233,7 @@ $(document).ready(function() {
     $(document).on('click','#btn-slider-login',function (){
         window.location.replace('login.html');
         return false;
-    })
+    });
 
     // $(document).on('click', '#btn-sign-in', function () {
     //     window.location.replace('inner.html');
