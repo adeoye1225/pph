@@ -24,7 +24,7 @@ $(document).ready(function() {
                 type: "POST",
                 url: "http://detechnovate.net/intuitive/access/api/login/"+company_code+"/",
                 
-                data: {username:username, password:password, company_code:company_code},
+                data: {username:username, password:password},
                 dataType: 'json',
 
                 success: function(msg){
@@ -230,7 +230,7 @@ $(document).ready(function() {
         //return false;
     //})
 
-    $(document).on('click','.btn-slider-login',function (){
+    $(document).on('click','#btn-slider-login',function (){
         window.location.replace('login.html');
         return false;
     });
