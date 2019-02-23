@@ -22,7 +22,7 @@ $(document).ready(function() {
             //let response_array = login_event(company_code,username,password);
             $.ajax({
                 type: "POST",
-                url: "http://detechnovate.net/intuitive/access/api/login/"+company_id+"/",
+                url: "http://detechnovate.net/intuitive/access/api/login/"+company_code+"/",
                 
                 data: {username:username, password:password, company_code:company_code},
                 dataType: 'json',
@@ -96,8 +96,8 @@ $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 //url: "http://detechnovate.net/intuitive/access/api/register/"+company_code+"/",
-                url: "http://detechnovate.net/intuitive/access/api/register/"+company_id+"/",
-                data: {email:email, password:password, mobile_no:mobile_no, company_code:company_code},
+                url: "http://detechnovate.net/intuitive/access/api/register/"+company_code+"/",
+                data: {email:email, password:password, mobile_no:mobile_no},
                 //data: {email:email, password:password, mobile_no:mobile_no},
                 dataType: 'json',
 
@@ -190,9 +190,9 @@ $(document).ready(function() {
             
             $.ajax({
                 type: "POST",
-                url: "http://detechnovate.net/intuitive/access/api/forgot_password/"+company_id+"/",
+                url: "http://detechnovate.net/intuitive/access/api/forgot_password/"+company_code+"/",
                 
-                data: {email:email, company_code:company_code},
+                data: {email:email},
                 dataType: 'json',
 
                 success: function(msg){
