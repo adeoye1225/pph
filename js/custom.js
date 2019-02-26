@@ -18,13 +18,13 @@ $(document).ready(function() {
             $('#pwd').focus();
             return false;
         } else {
-
+            var data = {username:username, password:password};
             //let response_array = login_event(company_code,username,password);
             $.ajax({
                 type: "POST",
                 url: "http://detechnovate.net/intuitive/access/api/login/"+company_code+"/",
                 
-                data: {username:username, password:password},
+                data: JSON.stringify(data) ,
                 dataType: 'json',
 
                 success: function(msg){
