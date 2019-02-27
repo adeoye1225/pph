@@ -93,11 +93,12 @@ $(document).ready(function() {
             return false;
 
         } else {
+            var data = {email:email, password:password, mobile_no:mobile_no};
             $.ajax({
                 type: "POST",
                 //url: "http://detechnovate.net/intuitive/access/api/register/"+company_code+"/",
                 url: "http://detechnovate.net/intuitive/access/api/register/"+company_code+"/",
-                data: {email:email, password:password, mobile_no:mobile_no},
+                data: JSON.stringify(data),
                 //data: {email:email, password:password, mobile_no:mobile_no},
                 dataType: 'json',
 
@@ -186,13 +187,13 @@ $(document).ready(function() {
             return false;
 
         } else {
-
+            var data = {email:email};
             
             $.ajax({
                 type: "POST",
                 url: "http://detechnovate.net/intuitive/access/api/forgot_password/"+company_code+"/",
-                
-                data: {email:email},
+
+                data: JSON.stringify(data),
                 dataType: 'json',
 
                 success: function(msg){
