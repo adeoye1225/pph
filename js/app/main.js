@@ -599,12 +599,13 @@ require(["jquery"], function($) {
                 var doctor_id = $(this).attr('data-doctorid');
                 
                 var token = localStorage.getItem('app_token');
+                var data = {doctor_id: doctor_id, doctor_name: doctor_name};
                 $.ajax({
                     type: "POST",
                     url: "http://detechnovate.net/intuitive/api/save_bookmark/",
                     
                     headers: {"token": token},
-                    data: {doctor_id: doctor_id, doctor_name: doctor_name},
+                    data: JSON.stringify(data),
                     dataType: "json",
 
                     success: function (msg) {
@@ -628,58 +629,28 @@ require(["jquery"], function($) {
 
 
                 var appointment_id = $(this).attr('data-appointid');
+                var appointment_time = $(this).attr('data-appointtime');
+                var app_time = new Date(val.appointment_time);
+                var doctor_name = $(this).attr('data-doctor');
 
                 var token = localStorage.getItem('app_token');
-                $.ajax({
-                    type: "POST",
-                    url: "http://detechnovate.net/intuitive/api/confirm_appointment/",
-                    
-                    headers: {"token": token},
-                    data: {appointment_id: appointment_id},
-                    dataType: "json",
-
-                    success: function (msg) {
-                        if (msg.status == 1) {
-
-                            alert(msg.message);
-                        } else if (msg.status == 101) {
-
-                            alert(msg.message);
-                            window.location.replace("login.html");
-                        } else {
-
-                            alert(msg.message);
-                        }
-                    }
-                });
-            });
-
-            $(document).on('click', '#btn-cancel-appoint', function () {
-
-
-
-                var appointment_id = $(this).attr('data-appointid');
-                var reason = $('#reason').val();
-                if (reason == "") {
-                    alert("Kindly enter your reason for cancelling");
-                    $('#reason').focus();
-                    return false;
-                }
-                else {
-
-                    var token = localStorage.getItem('app_token');
+                var confirm_book =confirm("Confirm Appointment with "+doctor_name+"\n at "+app_time);
+                var data = {appointment_id: appointment_id};
+                if (confirm_book==true) {
                     $.ajax({
                         type: "POST",
-                        url: "http://detechnovate.net/intuitive/api/cancel_appointment/",
-                        
+                        url: "http://detechnovate.net/intuitive/api/confirm_appointment/",
+
                         headers: {"token": token},
-                        data: {appointment_id: appointment_id, reason:reason},
+                        data: JSON.stringify(data),
                         dataType: "json",
 
                         success: function (msg) {
                             if (msg.status == 1) {
 
                                 alert(msg.message);
+                                mainView.router.refreshPage();
+
                             } else if (msg.status == 101) {
 
                                 alert(msg.message);
@@ -692,6 +663,49 @@ require(["jquery"], function($) {
                     });
                 }
             });
+
+            $(document).on('click', '#cancel-appoint', function () {
+
+
+
+                var appointment_id = $(this).attr('data-appointid');
+                var reason = $('#cancel_reason').val();
+                if (reason == "") {
+                    alert("Kindly enter your reason for cancelling");
+                    $('#reason').focus();
+                    return false;
+                }
+                else {
+                    var data = {appointment_id: appointment_id, reason:reason};
+                    var token = localStorage.getItem('app_token');
+                    $.ajax({
+                        type: "POST",
+                        url: "http://detechnovate.net/intuitive/api/cancel_appointment/",
+
+
+
+                        headers: {"token": token},
+                        data: JSON.stringify(data),
+                        dataType: "json",
+
+                        success: function (msg) {
+                            if (msg.status == 1) {
+
+                                alert(msg.message);
+                                mainView.router.loadPage('appointments.html');
+                            } else if (msg.status == 101) {
+
+                                alert(msg.message);
+                                window.location.replace("login.html");
+                            } else {
+
+                                alert(msg.message);
+                            }
+                        }
+                    });
+                }
+            });
+
             theApp.onPageInit('service', function (page) {
 
                 //theApp.alert("done");
@@ -806,6 +820,7 @@ require(["jquery"], function($) {
 
                 
                 var token = localStorage.getItem('app_token');
+                var data = {bookmark_id: bookmark_id};
 
                 var confirmbook =confirm("Remove doctor "+doctor_name+" from favourites");
                 if (confirmbook==true){
@@ -815,7 +830,7 @@ require(["jquery"], function($) {
                         url: "http://detechnovate.net/intuitive/api/delete_bookmark/",
                         
                         headers: {"token": token},
-                        data: {bookmark_id: bookmark_id},
+                        data: JSON.stringify(data),
                         dataType: "json",
 
                         success: function (msg) {
@@ -875,7 +890,10 @@ require(["jquery"], function($) {
 									article +='</div>';
 
 									article +='<div class="col-33">';
-									article +='<button class="btn-cancel-appoint" id="btn-appointid" data-appointid="'+val.appointment_id+'">Cancel <i class="fa fa-close"></i> </button></a>';
+                                    if (val.appointment_status == "Booked") {
+                                        article += '<a href="cancel_appointment.html?id='+val.appointment_id+'&center='+val.center_name+'&doctor_name='+val.doctor_name+'&app_time='+val.appointment_time+'"><button class="btn-cancel-appoint"  data-appointid="' + val.appointment_id + '">Cancel <i class="fa fa-close"></i> </button></a>';
+                                        article += '<button class="btn-confirm-appoint" id="btn-confirm-appoint" data-appointid="' + val.appointment_id + '" data-doctor="' + val.doctor_name +'" data-appointtime="' + val.appointment_time +'">Confirm <i class="fa fa-check"></i> </button></a>';
+                                    }
 									article +='</div>';
 
 
@@ -984,13 +1002,13 @@ require(["jquery"], function($) {
                 var token = localStorage.getItem('app_token');
 
                 var article_id = page.query.id;
-                
+                var data = {article_id:article_id};
                 $.ajax({
                     type: "POST",
                     url: "http://detechnovate.net/intuitive/api/get_article/",
                     
                     headers: {"token": token},
-                    data: {article_id:article_id},
+                    data: JSON.stringify(data),
                     dataType: "json",
 
                     success: function (msg) {
@@ -1026,6 +1044,27 @@ require(["jquery"], function($) {
                 });
             });
 
+            theApp.onPageInit('cancel-appointment', function (page) {
+
+                //theApp.alert("done");
+                //var token = localStorage.getItem('app_token');
+
+                var doctor_name = page.query.doctor_name;
+                var center_name = page.query.center;
+                var app_time = page.query.app_time;
+                var id = page.query.id;
+
+                var appointment_time = new Date(app_time);
+                //alert(article_id);
+
+
+                $('#btn-show').html('<a><button class="btn-cancel-appoint" id="cancel-appoint" data-appointid='+id+'>Cancel <i class="fa fa-close"></i> </button></a>');
+                $('#cnl-doctor').html(doctor_name);
+                $('#cnl-center').html(center_name);
+                $('#cnl-time').html(appointment_time);
+            });
+
+
             theApp.onPageInit('doctor-appointment', function (page) {
 
                 //theApp.alert("done");
@@ -1033,13 +1072,13 @@ require(["jquery"], function($) {
 
                 var doctor_id = page.query.doctor_id;
                 var doctor_name = decodeURI(page.query.doctor_name);
-                
+                var data = {doctor_id:doctor_id};
                 $.ajax({
                     type: "POST",
                     url: "http://detechnovate.net/intuitive/api/view_appointments/",
                     
                     headers: {"token": token},
-                    data: {doctor_id:doctor_id},
+                    data: JSON.stringify(data),
                     dataType: "json",
 
                     success: function (msg) {
@@ -1236,7 +1275,7 @@ require(["jquery"], function($) {
 
 
 
-            $('#list-appointment').html(appointment);
+                $('#list-appointment').html(appointment);
 
             });
 
@@ -1249,6 +1288,7 @@ require(["jquery"], function($) {
                 var app_time = new Date(appointment);
                                 
                 var token = localStorage.getItem('app_token');
+                var data = {doctor_id: doctor_id, appointment: appointment, center_id:center_id};
 
                 var confirmbook =confirm("Book appointment for:\n "+app_time+"");
                 if (confirmbook==true){
@@ -1260,7 +1300,7 @@ require(["jquery"], function($) {
 
 
                         headers: {"token": token},
-                        data: {doctor_id: doctor_id, appointment: appointment, center_id:center_id},
+                        data: JSON.stringify(data),
                         dataType: "json",
 
                         success: function (msg) {
@@ -1416,12 +1456,13 @@ require(["jquery"], function($) {
                     $('#first_name').focus();
                     return false;
                 } else {
+                    var data = {first_name:first_name, last_name:last_name, middle_name:middle_name, gender:gender};
                     $.ajax({
                         type: "POST",
 						url: "http://detechnovate.net/intuitive/api/update_profile/",
                         
                         headers: {"token": token},
-                        data: {first_name:first_name, last_name:last_name, middle_name:middle_name, gender:gender},
+                        data: JSON.stringify(data),
                         dataType: 'json',
 
                         success: function(msg){
@@ -1447,7 +1488,7 @@ require(["jquery"], function($) {
                     });
                     return false;
                 }
-            })
+            });
 
             $(document).on('click', '#btn-change-password', function () {
 
@@ -1479,12 +1520,13 @@ require(["jquery"], function($) {
                     return false;
 
                 } else {
+                    var data = {current_password:current_password, new_password:new_password};
                     $.ajax({
                         type: "POST",
 						url: "http://detechnovate.net/intuitive/api/change_password/",
                         
                         headers: {"token": token},
-                        data: {current_password:current_password, new_password:new_password},
+                        data: JSON.stringify(data),
                         dataType: 'json',
 
                         success: function(msg){
@@ -1516,7 +1558,7 @@ require(["jquery"], function($) {
                     });
                     return false;
                 }
-            })
+            });
 
             $(document).on('click', '#btn-pre-register', function () {
 
@@ -1570,12 +1612,13 @@ require(["jquery"], function($) {
                         $('#pre-dob').focus();
                         return false;
                 } else {
+                    var data = {salutation:salutation, first_name:first_name, middle_name:middle_name, last_name:last_name, gender:gender, category:category, dob:dob, address:address, state:state, city:city};
                     $.ajax({
                         type: "POST",
 						url: "http://detechnovate.net/intuitive/api/pre_register/",
                         
                         headers: {"token": token},
-                        data: {salutation:salutation, first_name:first_name, middle_name:middle_name, last_name:last_name, gender:gender, category:category, dob:dob, address:address, state:state, city:city},
+                        data: JSON.stringify(data),
                         dataType: 'json',
 
                         success: function(msg){
@@ -1607,7 +1650,7 @@ require(["jquery"], function($) {
                     });
                     return false;
                 }
-            })
+            });
 
             $(document).on('click', '#btn-send-message', function () {
 
@@ -1628,11 +1671,12 @@ require(["jquery"], function($) {
 
 
                 } else {
+                    var data = {subject:subject, message:message};
                     $.ajax({
                         type: "POST",
 						url: "http://detechnovate.net/intuitive/api/save_message/",
 						headers: {"token": token},
-                        data: {subject:subject, message:message},
+                        data: JSON.stringify(data),
                         dataType: 'json',
 
                         success: function(msg){
@@ -1667,7 +1711,7 @@ require(["jquery"], function($) {
                     });
                     return false;
                 }
-            })
+            });
 			
 
 
