@@ -634,7 +634,8 @@ i.rotate-180{
 .primary-color{color: #171616;}
 .primary-bg{background: #fff !important; }
 
-.primary-bg-temporary{background: #fff !important; }
+.primary-bg-temporary{background: transparent !important; }
+/*.primary-bg-temporary{background: #fff !important; }*/
 
 .primary-dark-color{color: #E64A19;}
 .primary-dark-bg{background-color: #E64A19 !important;}
@@ -3277,4 +3278,8 @@ a {
 .btn-group-right .btn-doc-right button{
     margin: 10px 5px !important;
     float: left;
+}
+
+.font36{
+    font-size: 36px;
 }
