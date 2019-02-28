@@ -507,10 +507,10 @@ require(["jquery"], function($) {
 
                 var list_table1 = "";
 
-                
+                list_table1 += '<a href="#" class="lnk-back-refresh"><p><i class="fa fa-arrow-left"></i> Back</p></a>';
                 $.each(menu, function (key, value) {
                     
-                    list_table1 += '<a href="#" class="lnk-back-refresh"><p><i class="fa fa-arrow-left"></i> Back</p></a>';
+
                     list_table1 += '<div class="row no-gutter margin-tb-20">';
                     list_table1 += '<a class=cat-link1 href=#  data-count=' + e + ' data-catname=' + value.dept + '>';
                     list_table1 += '<div class="col-20 text-right pr--10">';
@@ -1307,6 +1307,7 @@ require(["jquery"], function($) {
                             if (msg.status == 1) {
 
                                 alert(msg.message);
+								mainView.router.loadPage('appointments.html');
                             } else if (msg.status == 101) {
 
                                 alert(msg.message);
